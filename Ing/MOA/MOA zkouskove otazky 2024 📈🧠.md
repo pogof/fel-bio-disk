@@ -1,0 +1,298 @@
+# Metody mereni aktivity mozku
+- **functional connectivity**
+	-  Statistical dependence between remote neurophysiological areas
+- **effective connectivity**
+	- the influence one neural system exerts over another
+- **structural connectivity**
+	- the existence of white matter tracts physically interconnecting brain regions
+## Otazky
+- **Vyjmenujte alespoň pět metod měření mozkové aktivity.**
+	- fMRI (functional magnetic resonance imaging) - BLOOD FLOW
+	- EEG (electroencephalography) - ELECTRIC ACTIVITY
+	- MEG (magnetoencephalograhpy) - MAGNETIC FIELDS
+	- PET (positron emission tomography) - BLOOD FLOW
+	- fNIRS (functional near-infrared spectroscopy) - BLOOD FLOW
+- **Jaké je prostorové a časové rozlišení funkční magnetické rezonance a elektroencefalografie?**
+	- **fMRI**
+		- temporal resolution is in the order of seconds $1-5\:\text{s}$, because it measures changes in blood oxygenation, which take time so it is not so good
+		- it has good spatial resolution, common voxel size is $3\times3\times3\:\text{mm}^3$
+	- **EEG**
+		- good temporal resolution, brain waves range from $1-30\:\text{Hz}$ so the resolution is on the level of $\text{ms}$
+		- scalp EEG has poor spatial resolution as signals from different parts of the brain get mixed up before reaching the scalp, invasive EEG has better resolution but it is invasive which is impractical
+- **Co je to default (mode) network?** 
+	- a network composed of brain regions that are active when a person is not focused on the outside world and the brain is at wakeful rest
+- **Co jsou to "low-frequency fluctuations", jaká je jejich typická časová škála a proč?**
+	- low-frequency oscillations of the blood-oxygen-level-dependent signal (BOLD)
+	- 0.01-0.1 Hz, 10-100s
+	- slow fluctuations in activity are a fundamental feature of the resting brain, they are used to determine correlatied activity between brain regions and define resting state networks $\rightarrow$ functional connectivity
+- **Definujte pojem functional connectivity**  
+	- Statistical dependence between remote neurophysiological areas
+- **K čemu slouží předzpracování fMRI dat? Vysvětlete jednotlivé kroky.**
+	- registrace $\rightarrow$ pacient se muze behem mereni hybat
+	- alignment proti anatomickemu atlasu $\rightarrow$ kazdy muze mit jinak tvarovany mozek
+	- smoothing with a gaussian kernel $\rightarrow$ noise suppression
+- **Co jsou to klidové sítě (resting state networks) a jak jsou typicky detekovány?**
+	- regions of brain that exhibit activity at rest
+	- they can be detected with fMRI and SPM, we can use low-frequency fluctuations for this
+	- the most prominent one is Default Mode Network which is associated with resting and daydreaming
+- **Jak souvisí klidové sítě s aktivitou mozku během řešení kognitivních úkolů?**
+	- during task activity these network exhibit task-related decrease in activity (inverse correlation), especially during tasks with high cognitive demand
+- **Jmenujte příklady možných zdrojů systematického šumu v fMRI datech.**
+	- low-frequency noise comming from scanner drift
+	- correlated systematic errors from hearbeat and breathing
+---
+# Funkcni konektivita: nelinearita a nestacionarita
+- **Pearsonova korelace**
+	- $$\rho_{X,Y}=\frac{\text{cov}(X,Y)}{\sigma_X\sigma_Y}=\frac{\sum (x - m_x) (y - m_y)}
+                 {\sqrt{\sum (x - m_x)^2 \sum (y - m_y)^2}}$$
+- **Spearmanova korelace (spearman rank correlation)**
+	- $$\rho_{X,Y}=\frac{\text{cov}(R(X),R(Y))}{\sigma_R(X)\sigma_R(Y)}$$
+	- spearman is similar to pearson, but 
+		- it is non-parametric
+		- it uses the ranks (argsort) of values instead
+- **Mutual information**
+	- used to evaluate the dependence between two random variables $$\begin{align} 
+	&I(X,Y)=\sum_{y\in X}\sum_{x\in X}p(x,y)\log \left(\frac{p(x,y)}{p(x)p(y)}\right)\\&I(X,Y)=H(X)+H(Y)-H(X,Y)
+	\end{align}$$
+	- where entorpy $H(X)$ and joint entropy $H(X,Y)$ are defined as $$\begin{align}H(X)&=-\sum_{x\in X}p(x)\log p(x)\\H(X,Y)&=-\sum_{x\in X}\sum_{y\in Y}p(x,y)\log p(x,y)
+	\end{align}$$
+## Otazky
+- **Definujte Pearsonův korelační koeficient a vzájemnou informaci; popište jejich vztah, relativní výhody a nevýhody užití obou funkcí jako měřítka funkční konektivity.**
+	- pearson is simpler to compute and doesn't require the distribution, but it can only find linear dependencies in the data
+	- mutual information can find non-linear dependencies, but we need the distribution to compute it, which we usually don't have and determining it from data can be unreliable
+- **Uveďte příklad (vzorku) náhodných veličin s Pearsonovou korelací větší než Spearmanovou.**
+	- use outliers to add possitive correlation, where there is none
+	- ![[Pasted image 20240120173517.png|400]]
+- **Uveďte příklad (vzorku) náhodných veličin se Spearmanovou korelací větší než Pearsonovou.**
+	- use the fact that spearman can find non-linear dependencies, for example this sigmoid curve will have spearman = 1 and pearson < 1
+	- ![[Pasted image 20240120172319.png|400]]
+- **Uveďte příklad (vzorku) náhodných veličin se Spearmanovou korelací pozitivní, Pearsonovou negativní.**
+	- use outliers to introduce negative correlation
+	- ![[Pasted image 20240120173154.png|400]]
+- **Uveďte příklad náhodných veličin s Pearsonovou korelací 0, vzájemnou informací 1 bit.**
+	- mutual information of exactly 1 bit means that if we know $x$ we know that $y$ will surely take one of two values (and vice versa)
+	- pearson correlation of zero means that there is no linear dependence between $x$ and $y$
+	- for example for a quadratic relationship between $x$ and $y$ we would get a pearson correlation of 0 and high mutual information (though I dont know how to get exactly 1 bit)
+	- this is a sample with the desired values
+	- ![[Pasted image 20240120202036.png|200]]
+---
+# Metody pro charakterizaci mozkové konektivity
+- **Granger causality**
+	- a variable is considered causal with respect to some target variable, if its inclusion in a (linear) model improves the prediction of the target
+	- used for testing whether a (time-series) variable is useful for predicting another variable (series)
+	- $Y$ causes $X$ if the granger causality index, i.e. it improves the fit of the model, where $\eta_t$ is the error of the model without $X^j$ and $\phi_t$ is the error with $X^j$ included $$F_{X^j\rightarrow X^i}=\frac{var(\eta_t)}{var(\phi_t)}\ne 0$$
+- **Transfer entropy**
+	- non-linear counterpart to granger causality
+	- transfer entropy from a process $X$ to another process $Y$ is the amount of uncertainty reduced in future values $Y_{t+1}$ by knowing the past values of $X$ given past values of $Y$ 
+	- the difference of entropies of $Y_{t+1}$ conditioned only on $Y_t$ or also on $X_t$ $$T_{X\rightarrow Y}=H(Y_{t+1}|Y)-H(Y_{t+1}|Y,X)$$
+- **Mean phase coherence**
+	- tests the ability of two waves to interfer with each other, maximum if the waves have the same frequency (with arbitrary phase shift)
+	- $$R=|\frac1N \sum_{j=1}^Ne^{i[\phi_x(t_j)-\phi_y(t_j)]}|$$
+## Otazky
+- **Jaké jsou alternativní metody pro odhad funkční konektivity vedle Pearsonovy korelace? Definujte, popište relativní výhody a nevýhody.**
+	- spearman
+	- mutual information
+	- granger causality
+- **Vysvětlete rozdíl mezi pojmy funkční konektivita, efektivní konektivita, strukturní konektivita.**
+	- **funkcni konektivita**
+		- existuje statisticka zavislost mezi aktivaci dvou ruznych neuralnich systemu, typicky pri nejakem konkretnim podnetu
+	- **efektivni konektivita**
+		- neuralni system ma vliv na nejakou jinou cast
+	- **strukutralni konektivita**
+		- mezi neuralnimi systemy existuje fyzicke propojeni pres axony
+- **Uveďte příklady metod odhadu efektivní konektivity, diskutujte jejich relativní výhody a nevýhody.**
+	- granger causality
+	- transfer entropy
+- **Uveďte příklad náhodných veličin s Pearsonovou korelací 0, průměrnou fázovou koherencí 1.**
+	- $y_1=\sin(x)$
+	- $y_2=\sin(x+\frac\pi2)$
+---
+# Modelování BOLD signálu
+## Otazky
+- **Co je to ‘hemodynamic response function’?**
+	- a typical BOLD response to an impulse stimulus, impulse response
+	- ![[Pasted image 20240121175536.png|400]]
+- **Co je to statistická parametrická mapa?**
+	- technika pro testovani statistickych hypotezi ve funkcnim neurozobrazovani
+	- hledani pixelu ci clusteru jejichz aktivita pozitivne koreluje se stimulem
+- **Popište postup statistické inference z fMRI dat ohledně mozkové aktivace během kognitivní úlohy administrované v blocích (tedy ne klidový stav).**
+	- alignment (registrace) obrazu, motion correction
+	- normalizace oproti anatomicke referenci, nelinearni transformace 
+	- smoothing/vyhlazeni (redukce sumu)
+	- general linear model, testing correlation between brain activity and the stimulus, fitting a linear regression model to the data and using its p-values to determine significance
+	- statistical inference trough 
+---
+# Modely neuronální aktivity
+- **Neuron models**
+	- **Hodgin-Huxley**
+		- ![[Pasted image 20240121203518.png|300]]
+		- ![[Pasted image 20240121204128.png|300]]
+		- where we have current $I_c$ trough the lipid bilayer, current $I_i$ trough the ion channels and the total current $I$ as $$\begin{align}I_{c}&=C_{m}{\frac {{\mathrm {d} }V_{m}}{{\mathrm {d} }t}} \\ I_{i}&={g_{i}}(V_{m}-V_{i}) \\ I&=C_{m}{\frac {{\mathrm {d} }V_{m}}{{\mathrm {d} }t}}+g_{K}(V_{m}-V_{K})+g_{Na}(V_{m}-V_{Na})+g_{l}(V_{m}-V_{l})\end{align}$$
+		- $g$ are conductances of different channels
+		- **type II neurons**
+			- after a threshold curent $I_\theta$ the neuron starts firing at some minimum firing frequency, this again increases with increasing $I$
+			- ![[Pasted image 20240121204803.png|300]]
+	- **Leaky Integrate-and-Fire (LIF)**
+		- $$C_i\frac{dV_i}{dt}=I_i-g_iV_i$$
+		- if $V(t)=V_{th}$ then $V(t+\triangle)=V_R$ (neruon fires) and reset $V_i$
+		- ![[Pasted image 20240121210609.png|400]]
+		- **type I neurons**
+			-  after a threshold curent $I_\theta$ start firing at arbitrarily low frequencies for small currents, the firing rate increases with increasing current until the maximum frequency
+			- this corresponds to the LIF model
+			- ![[Pasted image 20240121204441.png|300]]
+- **Whole brain models**
+	- **Neural mass models**
+		- $$\frac{du}{dt}=-u+w_{syn}f(u)+I_{ext}$$
+			- where
+				- $u$ is membrane potential
+				- $f(u)$ is firing rate
+				- $w_{syn}$ is synaptic weight
+				- $I_{ext}$ is external input
+	- **Wilson-Cowan model**
+		- interaction between excitatory and inhibitory neural population
+		- describes mean firing rates $E$ (excitatory) and $I$ (inhibitory)
+		- $$\tau\frac{dE}{dt}=-E+(1-rE)S[w_{EE}E-w_{EI}I+P]$$
+		- $$\tau\frac{dT}{dt}=-T+(1-rT)S[w_{IE}E-w_{II}I+Q]$$
+		- where 
+			- $P$ and $Q$ are the external inputs to the excitatory/inhibitory population
+			- $(1-r\alpha)$ captures the refractory dynamis of the population
+			- $S(x;a,\theta)$ is a modified sigmoid function $\sigma(a(x-\theta))$
+		- ![[Pasted image 20240121215233.png|200]]
+## Otazky
+- **Popište základní mechanismus neuronální komunikace.**
+	- a depolarised neuron emits action potentials along its axon
+	- at chemical synapisis a neurotransmiter is released and the signal is transfered chemically using postsynaptic ion channels, this either depolarises (activates) or hyperpolarizes (inactivates) the following neuron
+	- dendrites collect synaptic input and transmit it to soma
+- **Popište Hodgkinův-Huxleyův model a Leaky Integrate-and-Fire model neuronu. Jmenujte klíčové rozdíly?**
+	- leaky integrate-and-fire -> type I neuron
+	- hodgkin-huxley -> type II neuron
+---
+# Problémy statistické inference pro fMRI data
+## FWE (family-wise error rate)
+- probability of observing at least one false positive result
+## FDR (false discovery protein)
+- probability of false positives among all positives
+## Otazky
+- **Proč je problémem pro statistickou inferenci časová závislost vzorků a jakým způsobem lze závislost mezi veličinami testovat při existenci závislosti mezi prvky uvnitř jednotlivých vzorků?**
+	- it violates the assumption of independence, this can lead to inflated rates of type I errors
+	- can be tested with autocorrelation / autoregressive models
+	- or sidestepped with surrogate testing
+- **Co jsou to náhradní data (surrogate data)? Uveďte příklady typů náhradních dat a jaké hypotézy umožňují testovat.**
+	- Data that are computationally generated that behave with statistical features similar to that of real data
+	- they can be used to perform permutation tests, e.g. generate a null distribution of test statistic according to a model fitted to the existing data and compare it against the observed test statistic
+	- **Circular shift surrogates**
+		- roll each series in time by a random $t$
+		- evaluate correlation for these shifted surrogates
+		- repeat $N$ times to obtain a distribution estimate
+		- if the correlation on the true data is far from the mean (p < 0.05) reject $H_0$
+	- **Random permutation surrogates**
+		- permute each series randomly
+	- **Phase shifted**
+		- shift the phase of each frequency randomly
+	- surrogate data testing can be used to detect non-linearity in time series
+- **Co je to problém mnohonásobného testování? Dokumentujte na příkladu.**
+	- if a tests has significance level at $\alpha=0.05$ we allow $5\%$ of false positives, this stacks multiplicatively with the number of tests we are doing
+- **Co je to Family-wise Error Rate? Popište vybranou metodu, která umožňuje jeho kontrolu.**
+	- the probability of observing at least one false positive
+	- can be controlled with bonferroni correction
+- **Co je to False Discovery Rate? Popište vybranou metodu, která umožňuje jeho kontrolu.**
+	- expected portion of false discoveries among all discoveries (falsely accepted $H_a$)
+	- can be controlled by benjamini-hochberg
+		- sort the p-values in ascending order
+		- for a given $\alpha$ find the largest $k_{th}$ for which $p_k\le\frac{k}{m}\alpha$
+		- p-values with $k < k_{th}$ are significant
+- **Co je to Bonferroniho korekce?**
+	- $\alpha_a=\frac\alpha m$
+	- adjust the significance level by the number of comparisions we are making
+---
+# Modelování spánkových oscilací
+- **Jmenujte tři klíčové elektroencefalografické elementy přítomé během NREM spánku.** 
+	- ![[Pasted image 20240122181501.png|400]]
+- **Co to je plasticita závislá na časování impulzů (Spike-timing dependent plasticity, STDP)?**
+	- the strength of input connections is dependent on how much they influence the output of the neuron, inputs that occur shortly before output are made stronger, inputs that occur immediately after output spike are made weaker
+---
+# Metody síťové/grafové analýzy
+
+- **Node degree**
+	- how many nodes is this one connected to, can be also normalized by the number of nodes in the network
+- **Node centrality**
+	- how many 'useful' paths lead trough this node
+	- **closeness centrality**
+		- how close is the node to all other nodes in the graph $$C(v)=\frac{N-1}{\sum_ud(u,v)}$$
+	- **betweenness centrality**
+		- how many shortest paths from $s$ to $t$ the node $v$ appears in $$C_B(v)=\sum_{s\ne v\ne t\in V}\frac{\sigma_{st}(v)}{\sigma}$$
+- **scale-free networks**
+	- networks, where the degree distribution follows the power law $$P(k)\approx k^{-\gamma}$$
+	- where $2 < \gamma < 3$
+	- meaning that most nodes have a small degree and only few nodes (hubs) have large degree
+- **Uveďte příklady lokálních a globálních grafově-teoretických charakteristik a formálně je zaveďte, diskutujte jejich možnou interpretaci.**
+	- node degree / average node degree
+	- node centrality
+	- graph density - relative number of connection $$G_d=\frac{E}{V^2}$$
+	- clustering coefficient
+		- local / global
+---
+# Reproducibilita výsledků v neurozobrazování
+## Otazky
+- **Uveďte alespoň tři významné faktory, které mohou vést k vysoké četnosti neplatných výsledků v publikované vědecké literatuře.**
+	- bias, nepublikovani negativnich vysledku
+	- p-hacking, zneuzivani metod, napr. zkusim 10 ruznych testu a reportuji jenom uspesny bez korekce pro multiple testing
+	- inflated rates of false positive, spatne nastavene testy, kdy napriklad nejsou splneny predpoklady parametrickeho testu
+- **Vypočtěte pozitivní prediktivní hodnotu pro kombinaci parametrů (síla=0,8, bias=0, poměr pravdivých a nepravdivých testovaných hypotéz=0,1).**
+	- $$PPV=\frac{R-\beta R + u\beta R}{(R-\beta R+ u\beta R)+u + \alpha - u\alpha }$$
+	- `ralf - bralf + uber` / `ralf - bralf + uber + u + a - ua`
+	- $PPV(\beta=0.2$, $u=0$, $\alpha=0.05$, $R=0.1$) $= \frac{8}{13}$
+---
+# Interpretace výsledků pokročilých metod
+- **Small world graphs**
+	- short average shortest path length $L$ ($\propto \log N$), we can compute the measure by comparing it againt average $L_{rand}$ for random graphs of similar size $$\lambda=\frac{L}{L_{rand}}$$
+	- large global clustering coefficient $\gamma$
+		- **local**
+			- how close is a the subgraph formed by this node and its neighbours to being a complete graph (clique)
+			- $C_l=\frac{\text{number of edges}}{\text{max number of edges}}$
+		- **global**
+			- triplet is three nodes that are
+				- open
+					- connected by two edges
+				- closed
+					- connected by three edges
+			- $C_g=\frac{\text{number of closed triplets}}{\text{number of all triplets (open and closed)}}$
+		- we compute $\gamma$ by comparing it against clustering coefficients on random graphs of similar size $$\gamma=\frac{C}{C_{rand}}$$
+	- graph is small world iff $$\frac\gamma\lambda>>1$$
+## Otazky
+- **Jaké grafové vlastnosti byste ve zvýšené míře očekávali od korelační matice, v porovnání s ER náhodným grafem?**
+	- the brain FC matrix is a small world graph, which a random graph wouldn't be so we would expect small world properties, small $L$, large $C$
+- **Zaveďte formálně vlastnost malého světa (small-world property).**
+- **Mají grafy funkční konektivity fMRI dat vlastnost malého světa? Proč?**
+	- ano
+	- it is because brain has a small-world topology, neurons are connected in functional units (large clustering coefficient) and brain is efficent at transfering information between these units in usually only a couple synapses (short path lengths)
+	- also fMRI graphs usually have many nodes, in large graphs even few connections can significantly shorten $L$ which leads to observing the SW property [Source](https://www.nature.com/articles/35022643)
+- **Má smysl interpretovat vlastnost malého světa u mozkových sítí? Kdy a jak?**
+	- yes, healthy brains show small-world properties and deviations are associated with pathologies [Source](https://www.frontiersin.org/articles/10.3389/fnhum.2016.00096/full)
+	- it can depend on the measurement, for example when using EEG we can obtain unreliable measurements due to poor spatial sensitivity of the method which leads to incorrect inference about the graph structure
+	- lecutres state that for functional connectivity the small world assumptions hold more than for structural connectivity
+---
+# Modelování vizuálního kortexu
+## Otazky
+- **Co je to receptivní pole neuronu (receptive field)**
+	- parts of the input (volumes in the visual space), which can be detected by a particular neuron
+- **Co je orientation tuning curve?**
+	- a graph which describes how neurons respond to different orientations of stimuli, typically a bell curve with maximum in the middle (orientation to which the neuron is the most sensitive to) which falls of in both directions
+	- ![[Pasted image 20240122184817.png|200]]
+- **Čím se odlišují jednoduché/komplexní buňky ve vizuální kůře?** 
+	- **simple cells**
+		- layer 4
+		- they receive input from the retina, they detect simple structures such as edges
+		- they have a fixed receptive field
+	- **complex cells**
+		- layer 2/3
+		- they receive inputs from various simple cells, detecting particular shapes, colours or movements in the visual field
+		- unlike simple cells they exhibit a form of spatial invariance (will fire regardless of where in the visual field the input occurs)
+- **Kolik vrstev má kortex a která je vstupní vrstva?**  
+	- primary visual cortex $V1$ has $6$ layers with layer $4$ being the input layer
+- **Vysvětlete funkční organizaci kortexu (orientation map, retinotopic map).**
+	- **orientation map**
+		- a mapping of stimuli which are in the same orientations to neurons which are sensitive to that particular 
+	- **retinotopic map**
+		- a mapping of similar visual inputs from retina to neurons, which process them
+		- i.e. mapping of receptive fields

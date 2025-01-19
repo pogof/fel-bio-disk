@@ -1,0 +1,11 @@
+====Jendno oddìlení====
+1)Servomotor - øízení, blok. schéma
+2)RS232
+3)RS485 - blok. zapojení, 3 zaøízení
+4)AD s aproximací - blok. schéma
+5)Výpoèet rozlišení AD pøevodníku a bin. výstup pokud na vstupu bude nìjaké napìtí (zadano Uin, U+ref, U-ref)
+6)SPI - blok. schéma
+7)4 bodový kapacitní dotykový displej
+8)Pøerušení
+9)Program Counter
+10)RISC

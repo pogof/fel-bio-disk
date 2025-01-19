@@ -1,0 +1,11 @@
+====Jendno oddìlení====
+1)Status registr
+2)RISC
+3)RS485 - blok. zapojení, 3 zaøízení
+4)AD s aproximací - blok. schéma
+5)Výpoèet rozlišení AD pøevodníku a bin. výstup pokud na vstupu bude nìjaké napìtí (zadano Uin=4,5V, U+ref=5,5V, U-ref=1,5V)
+6)SPI - blok. schéma, 3 zaøízení
+7)SAW dotykový panel
+8)Pøerušení a jeho obsluha
+9)Rotaèní enkodér inkrementální dvojitý
+10)øízení ss motoru - smìr, otáèky, øíyení pomocí uC

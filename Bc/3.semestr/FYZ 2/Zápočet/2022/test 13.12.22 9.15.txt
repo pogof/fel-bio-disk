@@ -1,0 +1,9 @@
+
+1. Napište vztah pro hybnost fotonu
+2. Napište znění Huygensova-Fresnelova principu s vysvětlujícím obrázkem
+3. Napište podmínku pro Fraunhoferovu difrakci
+4. Napište relativictický vztah pro energii částice
+5. Vysvětlete fotoelektrický jev a doplňte obrázkem
+6. Odvoďte vztah pro interferenční maxima na Youngově pokusu
+
+příklady 96 a 82

@@ -1,0 +1,10 @@
+1) zásobník - STACK
+2) Servomotor
+3) AD s aproximací
+4) I2C
+5) 1-Wire
+6) RS485vsRS232
+7) preruseni a jeho obsluha
+8) RISC
+9) 4-bodový rezistivni dotyk panel
+10)inkrementalni encoder 

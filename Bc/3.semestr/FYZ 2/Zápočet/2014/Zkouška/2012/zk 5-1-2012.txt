@@ -1,0 +1,35 @@
+Otázky
+------
+
+- Nakreslete p-V digram pro ideální Carnotùv cyklus a popište jednotlivé dìje, ze kterých se sestává.
+
+- Jakými pøedpoklady je definován ideální plyn.
+
+- Napište První zákon termodynamiky v diferenciálním tvaru a popište velièiny, které se ve vztahu
+vyskytují.
+
+- Napište Clausiovu-Clapeyronovu rovnici.
+
+- Napište vztah vyjadøující Maxwellovo-Boltzmannovo rozdìlení rychlostí ideálního plynu.
+
+- Jaký je vztah mezi grupovou a fázovou rychlostí pro bezdisperzní prostøedí?
+
+- Napište soustavu linearizovaných rovnici popisující akustické vlny v ideální tekutinì.
+
+- Odvoïte zobecnìnou vlnovou rovnici (telegrafní rovnici) pro elektrickou intenzitu.
+
+- Jak je zaveden index lomu pro nemagnetická prostøedí? Vyjádøete index lomu pomocí relativní
+permitivity.
+
+- Napište vztah pro zákon lomu (Snellùv zákon) elektromagnetické vlny.
+
+- Napište Huygensùv-Fresnelùv princip.
+
+- Napište vztah vyjadøující Stefanùv-Boltzmannùv zákon.
+
+- Z Planckova vyzaøovacího zákona odvoïte Rayleighùv-Jeansùv vyzaøovací zákon.
+
+Pøíklady
+--------
+
+6 a 39

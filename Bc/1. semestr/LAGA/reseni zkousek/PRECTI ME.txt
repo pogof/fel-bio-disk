@@ -1,0 +1,44 @@
+Je možné, že jsou vypacovaných úlohách chyby, ale myšlenky by měly být správné.
+Soubory needitujte přímo na disku, idálně si je jen stáhněte a pak si s nima dělejte co chcete, ať v tom neuděláte
+(ještě větší) bordel.
+
+Doporučuju to procházet v pořadí, ve kterém jsem ty věci dělal, což je:
+"testy z disku"
+"lag zkousky 2020"
+"lag zkousky 2019"
+"laga zkousky 2024"
+
+
+Některé definice nebo tvrzení jsou neuspokojivé, protože jim chybí například 
+použitelné značení. Případně je značení zbytečně zdlouhavé a upadla by mi ruka kdybych ho používal.
+
+Použité definice a věty a jejich ekvivalenty MFF x CVUT:
+
+MFF:		CVUT:
+Tvrzení 42	Tvrzení 12.4.12		(Matice projekce)
+Věta 25		Věta 12.4.14		(Gram-Shit)
+Věta 8		Věta 3.4.1		(Zadání homomorfismu hodnotami na bázi)
+Věta 10		Věta 3.3.6		(O dim jádra a obrazu)
+Definice 18	Definice 3.2.17		(Reprezentace vektoru vůči báz)
+Definice 23	Definice 9.1.2		(Reprezentace zobrazení vůci dvoum RŮZNÝM bázím)
+Definice 25	Definice 9.9.9		(Matice přechodu)
+Definice 1	Definice 4.1.2		(Definice matice)	[Je tam vidět i rozdíl v notaci sloupcováho zápisu matice]
+
+
+Predposledni 3 definice jsou fundamentální pro pochopení co opravdu znamená matice jelikož matice opravdu není zobrazení.
+Matice je reprezentace zobrazení vůči nějakým bázím, které mohou ale nemusí být stejné. Myšlenka matice přechodu plyne
+z Definice 23, ale ono f je v takovém případě identita (zároveň musí být zřejmě endomorfismus), jinak to funguje stejně.
+
+Poslední definice je definice matice. Ve AKLA skriptech je definovaná jako zobrazení. Což ale nedává smysl. Když
+si ve skriptech vyscrolluješ níž pod definici 4.1.2, tak je tam napsáno, že ta definice znamená, že je matice definovaná
+jako reprezentace nějakého zobrazení vůči nějakým bázím K a K, tedy reprezentace nějakého zobrazení vůči K. To ale není
+možné pochopit před přečtením kapitoly 9. Velice chytrá definice že? :-)
+
+Velice doporučuji přečíst si kapitolu 9 ve Velebilových skriptech, ale osobně teda spíš doporučuju kapitolu 7 v MFF skriptech,
+prtože tam je zavedené normální značení a za mě je to více pochopitelné. Taky doporučuju si přečíst MFF kapitolu 11 o Diagonalizaci,
+kde je reálně vysvětleno za základě kapitoly 7, co jsou ty matice "R". Nakonec doporučuju přečíst kapitolu 13 Skalární součin,
+kde je hezká definice skal. součinu a je tam vysvětlené jak se hledá matice projekce. Kapitola 1 v MFF skriptech je takový přechod
+mezi středoškolskou analytickou geometrií a lingebrou. Je tam taky ukázáno, co je projekce.
+
+V MFF skriptech se taky nachází spousta tvrzení, vět a hlavně jejich důkazů, takže když se někdo učí třeba na zápočťák, tak se
+může stát, že tam bude tvrzení z MFF skript. (Což se stalo mně xd) Přečtení teda zvýší šanci na úspěch.

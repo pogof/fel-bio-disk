@@ -1,0 +1,12 @@
+﻿FY2 20.1.2015
+1) Napište na základě Ekvipartičního teorému molární tepelnou kapacitu při konstantním objemu ideálního jednoatomového plynu
+2) Napište vztah popisující Maxwellovo-Boltzmannovo rozdělení rychlostí ideálního plynu.
+3) Vztah mezi akutsickým tlakem a akustickou rychlostí rovinné postupné vlny
+4) Jak zní Fermatův princip? Na základe Fermatova principu odvoďte zákon od­razu a zákon lomu.
+5) Odvoďte podmínku pro totální odraz.
+6) Napište Planckův vyzařovací zákon absolutně černého tělesa, zakreslete jeho průběh a z Planckova vyzařovacího zákona odvoďte Raygleighův-Jeansův a Wienův vyzařovací zákon. Co chápeme pod pojmem ultrafialová katastrofa? V čem se lišil přístup při odvození Raygleighova-Jeansova a Planckova vyzařovacího zákona?
+7) Pomocí antisymetrické funkce vysvětlete Pauliho vylučovací princip. Jaké je jeho znění pro elektrony v atomech?
+8) Jak je definován akustický tlak, akustická rychlost? Jak se počítá hladina akustického tlaku?
+9) Napište operátory základních fyzikálních veličin známých z klasické mechaniky.
+10) Popište a vysvětlete radioaktivitu β (β-, β+, elektronový záchyt).
+11) Jaká byl hlavní nedostatek planetárního modelu atomu? Jak zní Bohrovy postuláty?

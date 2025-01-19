@@ -1,0 +1,12 @@
+1) krokový motor
+2) uPC
+3) RS422
+4) AD s aproximací 
+5) Výpoèet hodnoty z pøevodníku pro Uin
+6) SPI
+7) 5vod panel
+8) Pøerušení
+9) Program Counter
+10) CISC
+
+

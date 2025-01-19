@@ -1,0 +1,8 @@
+1 ... Napište 3. Termodynamický zákon
+2 ... Nakreslete pV diagram Carnotova cyklu a popište jednotlivé děje
+3 ... Napište závislost strední kinetické energie na termodynamické teplotě
+4 ... Definujte vlnové čislo pomocí kruhového kmitočtu a vlnové délky, co nám udavá směr vlnového vektoru?
+5 ... Napište soustavu linearizovaných rovnic pro akustické vlnění idealní tekutiny
+6 ... Odvoďte vlnovou rovnici pro elektrickou intenzitu v nevodivém prostředí
+
+příklady ... 64 a 17
